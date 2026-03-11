@@ -4,7 +4,9 @@ export function useSpeechRecognition() {
   const [transcript, setTranscript] = useState('')
   const [isListening, setIsListening] = useState(false)
   const [isSupported] = useState(
-    () => !!(window.SpeechRecognition || window.webkitSpeechRecognition)
+    () =>
+      typeof window !== 'undefined' &&
+      !!(window.SpeechRecognition || window.webkitSpeechRecognition),
   )
   const recognitionRef = useRef(null)
 
@@ -35,6 +37,7 @@ export function useSpeechRecognition() {
     }
 
     recognition.onend = () => {
+      recognitionRef.current = null
       setIsListening(false)
     }
 
@@ -42,6 +45,7 @@ export function useSpeechRecognition() {
       if (event.error !== 'aborted') {
         console.error('Speech recognition error:', event.error)
       }
+      recognitionRef.current = null
       setIsListening(false)
     }
 

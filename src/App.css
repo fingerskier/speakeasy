@@ -180,12 +180,6 @@
   color: var(--success);
 }
 
-.diff-view .word.incorrect {
-  color: var(--danger);
-  text-decoration: line-through;
-  opacity: 0.7;
-}
-
 .diff-view .word.missing {
   color: var(--warning);
   opacity: 0.6;

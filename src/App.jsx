@@ -114,7 +114,7 @@ function App() {
       </div>
 
       {/* Transcript / Diff */}
-      {(transcript || result) && (
+      {(isListening || transcript || result) && (
         <div className="transcript-card">
           <div className="label">
             {result ? 'Comparison' : 'What you said'}

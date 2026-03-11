@@ -18,7 +18,13 @@ export function scoreAttempt(target, spoken) {
   const targetWords = tokenize(target)
   const spokenWords = tokenize(spoken)
 
-  if (targetWords.length === 0) return { score: 0, words: [], stats: {} }
+  if (targetWords.length === 0) {
+    return {
+      score: 0,
+      words: [],
+      stats: { total: 0, correct: 0, missed: 0, extra: spokenWords.length },
+    }
+  }
 
   // Build LCS table
   const m = targetWords.length
